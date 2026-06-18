@@ -45,7 +45,7 @@ make DESTDIR=%{buildroot} \
 %{_datadir}/nsls2/wallpapers/generic/*.jpg
 
 %changelog
-* Tue Jun 18 2026 Dmitri Gavrilov <dgavrilov@bnl.gov> - 0.2.3-1
+* Tue Jun 18 2026 Dmitri Gavrilov <dgavrilov@bnl.gov> - 0.2.4-1
 - Update the wallpaper for ARI beamline
 
 * Tue Jun 03 2025 Dmitri Gavrilov <dgavrilov@bnl.gov> - 0.2.3-1
