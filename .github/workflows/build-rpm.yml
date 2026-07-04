@@ -83,6 +83,7 @@ jobs:
           name: rpm-el${{ matrix.almalinux }}
           path: rpms/*.rpm
           if-no-files-found: error
+          overwrite: true
 
   release:
     name: Create GitHub Release
