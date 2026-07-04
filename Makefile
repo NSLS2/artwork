@@ -10,6 +10,7 @@ libexecdir = $(exec_prefix)/libexec
 wallpapers_beamlines  = $(wildcard wallpapers/beamlines/*.jpg)
 wallpapers_generic    = $(wildcard wallpapers/generic/*.jpg)
 tabs = $(wildcard tabs/*.png)
+turtle = $(wildcard turtle/*.png)
 photos = $(wildcard photos/*.jpg)
 scripts = $(wildcard bin/*)
 autostart = $(wildcard autostart/*.desktop)
@@ -39,7 +40,7 @@ all:
 	install -m 644 -t $(DESTDIR)$(datadir)/tabs $?
 
 .PHONY: .install-turtle
-.install-turtle: $(tabs)
+.install-turtle: $(turtle)
 	mkdir -p $(DESTDIR)$(datadir)/turtle
 	install -m 644 -t $(DESTDIR)$(datadir)/turtle $?
 
@@ -57,4 +58,4 @@ all:
 	cd $(DESTDIR)$(wallpaper_dir) && ln -sf $(generic_wallpaper) wallpaper.jpg
 
 .PHONY: install
-install: .install-wallpapers .install-tabs .install-autostart .install-scripts .install-photos
+install: .install-wallpapers .install-tabs .install-autostart .install-scripts .install-photos .install-turtle
