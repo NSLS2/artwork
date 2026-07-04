@@ -28,6 +28,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Mark repo as safe for git
+        run: git config --global --add safe.directory '*'
+
       - name: Derive version from tag
         id: version
         run: |
