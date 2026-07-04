@@ -24,7 +24,7 @@ jobs:
         run: dnf install -y rpm-build rpmdevtools make tar gzip git
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -33,6 +33,7 @@ jobs:
 
       - name: Derive version from tag
         id: version
+        shell: bash
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
@@ -53,6 +54,7 @@ jobs:
         run: rpmdev-setuptree
 
       - name: Create source tarball
+        shell: bash
         run: |
           git archive \
             --prefix="artwork-${VERSION}/" \
@@ -60,6 +62,7 @@ jobs:
             HEAD
 
       - name: Prepare spec with tag version
+        shell: bash
         run: |
           sed "s/^Version:.*/Version:        ${VERSION}/" artwork.spec \
             > "${HOME}/rpmbuild/SPECS/artwork.spec"
@@ -68,13 +71,14 @@ jobs:
         run: rpmbuild -bb "${HOME}/rpmbuild/SPECS/artwork.spec"
 
       - name: Collect built RPM
+        shell: bash
         run: |
           mkdir -p rpms
-          cp "${HOME}"/rpmbuild/RPMS/noarch/*.rpm rpms/
+          find "${HOME}/rpmbuild/RPMS" -name '*.rpm' -exec cp {} rpms/ \;
           ls -lh rpms/
 
       - name: Upload RPM artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: rpm-el${{ matrix.almalinux }}
           path: rpms/*.rpm
@@ -90,7 +94,7 @@ jobs:
 
     steps:
       - name: Download all RPM artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           pattern: rpm-el*
           merge-multiple: true

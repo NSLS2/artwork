@@ -5,10 +5,11 @@ Name:           artwork
 Version:        0.2.4
 Release:        1%{?dist}
 Summary:        NSLS-II Artwork
+BuildArch:      noarch
 
 License:        Redistributable, no modification permitted
-URL:            https://github.com/NSLS-II/artwork
-Source0:        https://github.com/NSLS-II/artwork/archive/v%{version}/artwork-v%{version}.tar.gz
+URL:            https://github.com/NSLS2/artwork
+Source0:        https://github.com/NSLS2/artwork/archive/v%{version}/artwork-v%{version}.tar.gz
 
 BuildRequires: make
 #Requires:
@@ -39,6 +40,7 @@ make DESTDIR=%{buildroot} \
 %{_datadir}/nsls2/bin/set-wallpaper
 %{_sysconfdir}/xdg/autostart/set-wallpaper.desktop
 %{_datadir}/nsls2/tabs/*.png
+%{_datadir}/nsls2/turtle/*.png
 %{_datadir}/nsls2/photos/*.jpg
 %{_datadir}/nsls2/wallpapers/wallpaper.jpg
 %{_datadir}/nsls2/wallpapers/beamlines/*.jpg
