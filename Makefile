@@ -38,6 +38,11 @@ all:
 	mkdir -p $(DESTDIR)$(datadir)/tabs
 	install -m 644 -t $(DESTDIR)$(datadir)/tabs $?
 
+.PHONY: .install-turtle
+.install-turtle: $(tabs)
+	mkdir -p $(DESTDIR)$(datadir)/turtle
+	install -m 644 -t $(DESTDIR)$(datadir)/turtle $?
+
 .PHONY: .install-photos
 .install-photos: $(photos)
 	mkdir -p $(DESTDIR)$(datadir)/photos
